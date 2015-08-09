@@ -82,6 +82,25 @@ automatically.</p>
         writeln(r);
     }
 }</pre></div>
+
+    <h3>
+<a id="simple-queries-when-we-want-to-work-with-result-set-and want-to-deal-with-it-a-row-at-a-time" class="anchor" href="#simple-queries-when-we-want-to-work-with-result-set-and want-to-deal-with-it-a-row-at-a-time" aria-hidden="true"><span class="octicon octicon-link"></span></a>Simple queries when we want to work with result set and want to deal with it a row at a time</h3>
+
+<p>This function is pretty similar to previous one, but rows are fetched lazyly.</p>
+
+<div class="highlight highlight-d"><pre><span class="pl-k">import</span> mysql.connection;
+
+<span class="pl-k">void</span> <span class="pl-en">main</span>() {
+    <span class="pl-c1">string</span> connStr = <span class="pl-s"><span class="pl-pds">"</span>host=localhost;port=3306;user=testuser;pwd=testpassword;db=testdb<span class="pl-pds">"</span></span>;
+    <span class="pl-k">auto</span> c = <span class="pl-k">new</span> Connection(connStr);
+    <span class="pl-c1">string</span> query = <span class="pl-s"><span class="pl-pds">"</span>SELECT * FROM `sometable`<span class="pl-pds">"</span></span>;
+    <span class="pl-k">auto</span> cmd = <span class="pl-k">new</span> Command(dbconnection, query);
+    <span class="pl-k">auto</span> result = cmd.execSQLSequence();
+
+    <span class="pl-k">foreach</span>(r; result) {
+        writeln(r);
+    }
+}</pre></div>
         </section>
 
         <footer>
